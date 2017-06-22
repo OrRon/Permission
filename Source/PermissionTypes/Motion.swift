@@ -37,7 +37,6 @@ extension Permission {
     }
     
     func requestMotion(_ callback: Callback?) {
-        UserDefaults.standard.requestedMotion = true
         
         let now = Date()
         
@@ -47,6 +46,7 @@ extension Permission {
             if  let error = error , error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .denied
             } else {
+                UserDefaults.standard.requestedMotion = true
                 status = .authorized
             }
             
